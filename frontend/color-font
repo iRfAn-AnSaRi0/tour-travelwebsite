@@ -1,0 +1,41 @@
+🔝 Navbar
+
+Background: #1B4332
+
+Text: #F8F9FA
+
+Active link / underline: #F4A261
+
+🟠 Buttons (Very Important)
+
+Primary Button: #F4A261
+
+Hover: slightly darker (#E76F51)
+
+Text: #212529
+
+🧱 Sections / Cards
+
+Background: #F8F9FA
+
+Card border or accent: #40916C
+
+📝 Text
+
+Headings: #1B4332
+
+Body text: #212529
+
+
+
+Recommended Weights (copy this)
+
+Hero Heading: 700
+
+Section Headings: 600
+
+Navbar Text: 500
+
+Button Text: 600
+
+Body Text: 400
