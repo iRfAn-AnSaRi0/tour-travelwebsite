@@ -2,8 +2,9 @@ import ioredis from 'ioredis';
 
 const redis = new ioredis({
     host: process.env.REDIS_HOST,
-    port: process.env.REDIS_PORT,
-    password: process.env.REDIS_PASSWORD
+    port:  Number(process.env.REDIS_PORT),
+    password: process.env.REDIS_PASSWORD,
+    tls: {}
 });
 
 redis.on('connect', () => {
@@ -19,15 +20,6 @@ redis.on('error', (err) => {
     console.log('error : ', err);
 
 })
-
-// const test = async () => {
-//   await redis.set("test_key", "hello");
-//   const value = await redis.get("test_key");
-//   console.log("Redis Value:", value);
-//   process.exit();
-// };
-
-// test();
 
 
 export { redis }
