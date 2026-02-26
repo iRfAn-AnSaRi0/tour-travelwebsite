@@ -2,10 +2,9 @@ import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt"
 
 const userSchema = new Schema({
-    username: {
+    fullName: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
         minlength: [3, "Username must be at least 3 characters"],
         maxlength: [30, "Username must be max 30 characters"],
@@ -17,7 +16,6 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
         lowercase: true,
         trim: true,
         match: [
@@ -34,6 +32,10 @@ const userSchema = new Schema({
             "Password must contain uppercase, lowercase, number and special character"
         ],
         select: false
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true })
 

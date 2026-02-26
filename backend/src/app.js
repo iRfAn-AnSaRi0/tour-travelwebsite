@@ -5,7 +5,7 @@ import cookieparser from "cookie-parser"
 const app = express();
 
 app.use(cors({
-    origin: process.env.DB_URI,
+    origin: process.env.CORS_ORIGIN,
     credentials: true
 
 }));
@@ -21,5 +21,9 @@ app.use("/api", userRouter)
 import { messageRouter } from "./routes/enquiryRouter.js"
 
 app.use("/api", messageRouter)
+
+import {verifyOtpRouter} from "./routes/verifyOtp.js";
+
+app.use("/api", verifyOtpRouter)
 
 export { app };

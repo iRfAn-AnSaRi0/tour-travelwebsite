@@ -6,9 +6,9 @@ const enquirySchema = new Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"userDetails",
-        required:true
+         required:true
     },
-    fullname: {
+    fullName: {
         type: String,
         required: true,
         trim: true,
@@ -19,7 +19,7 @@ const enquirySchema = new Schema({
             "Full name can contain only letters and single spaces"
         ]
     },
-    contactnumber: {
+    phone: {
         type: String,
         required: true,
         match: [
@@ -37,7 +37,7 @@ const enquirySchema = new Schema({
             "Enter a valid email address"
         ]
     },
-    preferredtravedate: {
+    preferredDate: {
         type: Date,
         validate: {
             validator: function (value) {
