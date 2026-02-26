@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
@@ -19,22 +20,22 @@ export default function Footer() {
         <div>
           <h3 className="text-xl font-semibold mb-4 text-white">Quick Links</h3>
           <ul className="space-y-2">
-            <li>
-              <a href="/about" className="text-gray-200 hover:text-secondary transition">About</a>
-            </li>
-            <li>
-              <a href="/destination" className="text-gray-200 hover:text-secondary transition">Destinations</a>
-            </li>
-            <li>
-              <a href="/package" className="text-gray-200 hover:text-secondary transition">Tour Packages</a>
-            </li>
-            <li>
-              <a href="/gallery" className="text-gray-200 hover:text-secondary transition">Gallery</a>
-            </li>
-            <li>
-              <a href="/contact" className="text-gray-200 hover:text-secondary transition">Contact</a>
-            </li>
-          </ul>
+  <li>
+    <Link to="/about" className="text-gray-200 hover:text-secondary transition">About</Link>
+  </li>
+  <li>
+    <Link to="/destination" className="text-gray-200 hover:text-secondary transition">Destinations</Link>
+  </li>
+  <li>
+    <Link to="/package" className="text-gray-200 hover:text-secondary transition">Tour Packages</Link>
+  </li>
+  <li>
+    <Link to="/gallery" className="text-gray-200 hover:text-secondary transition">Gallery</Link>
+  </li>
+  <li>
+    <Link to="/contact" className="text-gray-200 hover:text-secondary transition">Contact</Link>
+  </li>
+</ul>
         </div>
 
         {/* Contact */}

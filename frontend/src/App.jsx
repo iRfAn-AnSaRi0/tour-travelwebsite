@@ -12,6 +12,7 @@ import Footer from "./components/Footer.jsx";
 import LoginSignupModal from "./components/LoginSignupModal.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -48,6 +49,7 @@ function App() {
         />
       )}
 
+<ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
