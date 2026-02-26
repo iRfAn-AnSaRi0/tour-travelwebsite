@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import BaseApi from "../apis/BaseApi";
+import { log } from "console";
 
 export default function LoginSignupModal({
   isLogin,
@@ -102,6 +103,8 @@ export default function LoginSignupModal({
       toast.error(
         error?.response?.data?.message || "Something went wrong ❌"
       );
+      
+      
     } finally {
       setLoading(false);
     }
