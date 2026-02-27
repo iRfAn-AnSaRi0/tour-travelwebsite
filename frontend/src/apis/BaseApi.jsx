@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BaseApi = axios.create({
-  baseURL: "https://tour-travelwebsite.onrender.com/api", // backend base url
+  baseURL: "https://tour-travelwebsite.onrender.com/api", // backend base url https://tour-travelwebsite.onrender.com
   headers: {
     "Content-Type": "application/json",
   },
