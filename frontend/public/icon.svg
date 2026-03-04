@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background Circle (sun) using secondary color -->
+  <circle cx="32" cy="32" r="32" fill="#40916c"></circle>
+  
+  <!-- Mountains using primary color -->
+  <polygon points="8,52 24,20 40,52" fill="#1b4332"></polygon>
+  <polygon points="24,52 40,16 56,52" fill="#1b4332"></polygon>
+  
+  <!-- Snow Peaks -->
+  <polygon points="24,20 28,28 20,28" fill="#f8f9fa"></polygon>
+  <polygon points="40,16 44,24 36,24" fill="#f8f9fa"></polygon>
+</svg>

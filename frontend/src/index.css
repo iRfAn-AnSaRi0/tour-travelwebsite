@@ -133,4 +133,18 @@
 }
 
 
+@keyframes slowZoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12); /* slightly bigger zoom at midpoint */
+  }
+}
+
+.slow-zoom {
+  animation: slowZoom 40s ease-in-out infinite; /* slower and smooth */
+  transform-origin: center; /* zoom from the center */
+}
+
 

@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +17,8 @@ const Navbar = () => {
   const [user, setUser] = useState(null);
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState({}); // store which submenu is open
+  const [destOpen, setDestOpen] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -37,7 +35,16 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Destination", path: "/destination" },
+    {
+      name: "Destination",
+      path: "/destination",
+      submenu: [
+        { name: "North Sikkim", path: "/north-sikkim" },
+        { name: "South Sikkim", path: "/south-sikkim" },
+        { name: "East Sikkim", path: "/east-sikkim" },
+        { name: "West Sikkim", path: "/west-sikkim" },
+      ],
+    },
     { name: "Tour Package", path: "/package" },
     { name: "Gallery", path: "/gallery" },
     { name: "Contact", path: "/contact" },
@@ -56,7 +63,10 @@ const Navbar = () => {
               <span>+91 8392092399</span>
             </a>
 
-            <a href="mailto:gosikkim@help.com" className="flex items-center gap-1">
+            <a
+              href="mailto:gosikkim@help.com"
+              className="flex items-center gap-1"
+            >
               <FontAwesomeIcon icon={faEnvelope} />
               <span>Gosikkim@help.com</span>
             </a>
@@ -109,7 +119,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* 🔹 MAIN NAV */}
       <nav className="relative bg-light px-4 md:px-25 py-4 font-poppins text-dark">
         <div className="flex justify-between items-center">
           {/* LOGO */}
@@ -120,12 +129,54 @@ const Navbar = () => {
           </Link>
 
           {/* DESKTOP MENU */}
-          <div className="hidden md:flex gap-6 text-md">
-            {navItems.map((item) => (
-              <NavLink key={item.path} to={item.path} className="nav-link">
-                {item.name}
-              </NavLink>
-            ))}
+          <div className="hidden md:flex gap-6 text-md items-center relative">
+            {navItems.map((item) => {
+              if (item.submenu) {
+                return (
+                  <div
+                    key={item.name}
+                    className="relative"
+                    onMouseEnter={() => setDestOpen(true)}
+                    onMouseLeave={() => setDestOpen(false)}
+                  >
+                    {/* Parent link */}
+                    <NavLink
+                      to={item.path}
+                      className="cursor-pointer px-2 py-1 hover:text-[var(--color-primary)]"
+                    >
+                      {item.name}
+                    </NavLink>
+
+                    {/* Smooth submenu */}
+                    <div
+                      className={`absolute top-full left-0 bg-white shadow-lg rounded-md mt-2 w-48 z-20 transition-all duration-300 overflow-hidden ${
+                        destOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      {item.submenu.map((sub) => (
+                        <NavLink
+                          key={sub.path}
+                          to={sub.path}
+                          className="block px-4 py-2 hover:bg-[var(--color-light)]"
+                        >
+                          {sub.name}
+                        </NavLink>
+                      ))}
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    className="nav-link px-2 py-1 hover:text-[var(--color-primary)]"
+                  >
+                    {item.name}
+                  </NavLink>
+                );
+              }
+            })}
           </div>
 
           {/* MOBILE BUTTON */}
@@ -137,20 +188,67 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* ✅ MOBILE OVERLAY MENU (DOES NOT PUSH HEIGHT) */}
+        {/* MOBILE OVERLAY MENU */}
         {mobileMenuOpen && (
           <div className="absolute left-0 top-full w-full bg-light shadow-lg md:hidden">
             <div className="flex flex-col gap-4 p-5">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  className="nav-link"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </NavLink>
-              ))}
+              {navItems.map((item) => {
+                if (item.submenu) {
+                  const isOpen = mobileSubmenuOpen[item.name] || false;
+
+                  return (
+                    <div key={item.name} className="flex flex-col">
+                      {/* Parent link */}
+                      <div className="flex justify-between items-center w-full">
+                        <NavLink
+                          to={item.path}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="font-medium"
+                        >
+                          {item.name}
+                        </NavLink>
+                        <button
+                          onClick={() =>
+                            setMobileSubmenuOpen({
+                              ...mobileSubmenuOpen,
+                              [item.name]: !isOpen,
+                            })
+                          }
+                        >
+                          {isOpen ? "▲" : "▼"}
+                        </button>
+                      </div>
+
+                      {/* Submenu */}
+                      {isOpen && (
+                        <div className="flex flex-col pl-4 mt-2 gap-2">
+                          {item.submenu.map((sub) => (
+                            <NavLink
+                              key={sub.path}
+                              to={sub.path}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="text-gray-700 hover:text-[var(--color-primary)]"
+                            >
+                              {sub.name}
+                            </NavLink>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                } else {
+                  return (
+                    <NavLink
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-gray-700 hover:text-[var(--color-primary)]"
+                    >
+                      {item.name}
+                    </NavLink>
+                  );
+                }
+              })}
             </div>
           </div>
         )}

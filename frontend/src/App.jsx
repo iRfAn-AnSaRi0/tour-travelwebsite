@@ -13,6 +13,10 @@ import LoginSignupModal from "./components/LoginSignupModal.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import NorthSikkim from "./pages/NorthSikkim.jsx";
+import SouthSikkim from "./pages/SouthSikkim.jsx";
+import EastSikkim from "./pages/EastSikkim.jsx";
+import WestSikkim from "./pages/WestSikkim.jsx";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -54,6 +58,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/destination" element={<Destination />} />
+        <Route path="/north-sikkim" element={<NorthSikkim />} />
+        <Route path="/south-sikkim" element={<SouthSikkim />} />
+        <Route path="/east-sikkim" element={<EastSikkim />} />
+        <Route path="/west-sikkim" element={<WestSikkim />} />
         <Route path="/package" element={<Package />} />
         <Route
           path="/contact"
