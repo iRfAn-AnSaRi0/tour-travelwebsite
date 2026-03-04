@@ -45,7 +45,7 @@ const attractions = [
   {
     name: "Maenam Wildlife Sanctuary",
     image:
-      "http://www.sikkimstdc.com/Images/POIIDImages/252/Gallery/1.jpeg?auto=format&fit=crop&w=800&q=80",
+      "https://tripxl.com/blog/wp-content/uploads/2024/08/Red-panda-in-Maenam-Sanctuary.jpg?auto=format&fit=crop&w=800&q=80",
     description:
       "A sanctuary rich in flora and fauna, ideal for nature lovers and bird watchers.",
     link: "https://your-maenam-sanctuary-page-link.com",
